@@ -1,17 +1,17 @@
-#  /==========================================================================\
-# (--------------------------------Libraries-----------------------------------)
-#  \==========================================================================/
+#  //==========================================================================\\
+# ((----------------------------------Libraries---------------------------------))
+#  \\==========================================================================//
 
 import random
 import time 
 
 #  //==========================================================================\\
-# ((-----------------------------Interface--------------------------------------))
+# ((--------------------------------Interface-----------------------------------))
 #  \\==========================================================================//
 
-Character_pool = {
+Character_pool = {                                                  
     "Gladyator" : ["Alonzo","Erok","Proxgaint","Rockby"],
-    "Wizard" : ["Gloria","Adam","Kun","Samuel"],                             # düzenlenecek unutma!!!! v1.1
+    "Wizard" : ["Gloria","Adam","Kun","Samuel"],                             # Statları eklenecek v1.3
     "Archer" : ["Emrey","Ahu","Elegante","Eriksen"],
     "King" : ["Mr. Salvo","Kin","T.U.R.X"]
 }
@@ -31,8 +31,8 @@ for x in Character_lst:
         try:
             print("*"*100)
             time.sleep(1)
-            number = "/".join([str(sayi) for sayi in range(1,character_number+1)]) 
-            print(f"Mevcut karakterler: {character_now}")
+            number = "/".join([str(sayi) for sayi in range(1,character_number+1)]) # bunun sayesinde 1/2/3 yazırıyorum ne kadar varsa 1 den character_numer +1 e kadar
+            print(f"Mevcut karakterler: {character_now}")                          # çünkü character_number 0 dan başlıyor 1 den +1 ine kadar
             time.sleep(1)
             pick = int(input(f"{x} için Seçin: {number}: "))
             time.sleep(1)
@@ -69,11 +69,19 @@ for x in Character_lst:
         
 
 print(f"Takım oluşturuldu: {Pick_Character_lst}")
-time.sleep(1)    
+time.sleep(1)
 
-#  /==========================================================================\
-# (-----------------------------------OOP--------------------------------------)
-#  \==========================================================================/    
+EnemyPick_Character_lst = [] # LETS GO FUCKİNG GO
+for i in Character_lst:
+    EnemyPick_Character = random.choice(Character_pool[i])   # Botun takımı 
+    EnemyPick_Character_lst.append(EnemyPick_Character)
+print(EnemyPick_Character_lst)
+
+
+
+#  //==========================================================================\\
+# ((------------------------------------OOP-------------------------------------))
+#  \\==========================================================================//    
 
 class Character():
     def __init__(self,name,power,health,attack_repetitive,battle_cries):
@@ -82,10 +90,14 @@ class Character():
         self.Health = health
         self.Repetitive = attack_repetitive
         self.BattleCries = battle_cries
-
+    def defender(self):
+        defender_line = random.choice(defender_lines)
+        print(f"Defans yapıldı: {defender_line}")  # burdayız
     def attack(self,enemy):
         toplam = 0
         for i in range(self.Repetitive):
+            attack_line = random.choice(attack_lines)
+            print("Atak yapıldı: {ata}")
             RandomBattleCries = random.choice(self.BattleCries)
             print(f"{self.Name}: {RandomBattleCries}")
             time.sleep(2)
@@ -109,9 +121,10 @@ class King(Character):
         print("İşler Karıştı!!!")
         
 
-#  //==========================================================================\\
-# ((----------------------------Characters--------------------------------------))
-#  \\==================Name/Power/Healeth/Repetitive===========================//
+#  //=========================================================================\\
+# ||-------------------------------Characters---------------------------------||
+# ||-----------------------Name/Power/Healeth/Repetitive----------------------||
+# \\==========================================================================//
 
 gladyator0 = Character("Alonzo",50,200,1,[
     "Kılıcım gücünü halkımdan alır",
@@ -182,8 +195,8 @@ archer3 = Character("Eriksen",40,150,4,[
 ])
 
 #  //==========================================================================\\
-#  ||---------------------------------Kins-------------------------------------||
-#  ||------------------KingName/Healeth/SpecialPower---------------------------||
+#  ||----------------------------------Kins------------------------------------||
+#  ||----------------------KingName/Healeth/SpecialPower-----------------------||
 #  \\==========================================================================//
 
 king0 = King("Mr. Salvo",10000,"empty",[
@@ -201,6 +214,33 @@ king2 = King("T.U.R.X",9999,"empty",[
     "EF3.5622'FASF++&S&ASF&^+!'",
     "..."
 ])
+
+#  //==========================================================================\\
+# ((---------------------------Defender/Attack-lines----------------------------))
+#  \\==========================================================================//
+
+defender_lines = [
+    "Herkesin biraz dinlenmeye ihtiyacı vardır",
+    "Şimdi defans zamanı!!!",
+    "Takım güç topluyor"
+    ]
+
+attack_lines = [
+    "Şimdi saldırı vakti!!!",
+    "Saldırmak için koşuyorlar",
+    "ŞUNLARA BAK! öldürmek için geliyorlar"
+]
+
+
+
+
+
+
+
+
+
+
+
 
 # gladyator2.attack(gladyator3)
 
