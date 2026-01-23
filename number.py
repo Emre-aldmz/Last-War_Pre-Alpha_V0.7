@@ -18,5 +18,5 @@ while (x != number):
     elif number - 5 < x < number + 5 and x != number:
         print("so close!")
 
-print(f"yes you find the secret number!! '{x}' tryied '{i}' times")
+print(f"yes you found the secret number!! '{x}' tryied '{i}' times")
 
