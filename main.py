@@ -182,8 +182,7 @@ while pick0 != "quit" and pick0 != "3":
 
 
 
-archer0.attack(gladyator0)
-gladyator0.defender()
+
 
 
 

@@ -58,7 +58,7 @@ gladyator0 = Character("Alonzo",50,200,1,20,10,[
     "Nöbet... bitti...",
     "Devlet... bakidir...",
     "Emir demiri... kesti..."
-],healthbar_image,armorbar_image)
+],healthbar_image,armorbar_image,100)
 
 gladyator1 = Character("Erok",20,200,1,20,10,[
     "ET! KEMİK! KIRMAK!",
@@ -75,7 +75,7 @@ gladyator1 = Character("Erok",20,200,1,20,10,[
     "Güç... bedenimi... terk ediyor...",
     "Ava giden... avlanırmış..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 
 gladyator2 = Character("Proxgaint",30,250,1,25,10,[
@@ -93,7 +93,7 @@ gladyator2 = Character("Proxgaint",30,250,1,25,10,[
     "Oyun... bitti mi?...",
     "Kırıldı... her şey kırıldı..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 gladyator3 = Character("Rockby",1,1000,5,100,10,[
     "DAĞ YERİNDEN OYNAMAZ!",
@@ -110,7 +110,7 @@ gladyator3 = Character("Rockby",1,1000,5,100,10,[
     "Temelim... sarsıldı...",
     "Yıkıldım... ama taşlarım kalacak..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 gladyator4 = Character("Man",25,100,4,10,10,[
     "Kanın bile kıyafetime sıçramasın, çok iğrençsin!",
@@ -127,7 +127,7 @@ gladyator4 = Character("Man",25,100,4,10,10,[
     "Güzelliğim... soluyor...",
     "Bu sahnede... ölen ben olmamalıydım..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 # --- BÜYÜCÜLER ---
 
@@ -146,7 +146,7 @@ wizard0 = Character("Gloria",100,50,2,20,30,[
     "Bu kan... elbisemle hiç uyumlu değil...",
     "Dünya... en güzel çiçeğini kaybetti..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 wizard1 = Character("Adam",50,100,2,25,30,[
     "Kalp atışların çok gürültülü... Durduralım.",
@@ -163,7 +163,7 @@ wizard1 = Character("Adam",50,100,2,25,30,[
     "Sistem... çöküyor...",
     "Her şey... kararıyor... Sonunda hissizlik..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 wizard2 = Character("Kun",20,250,5,30,30,[
     "Senin için kazdığım çukur tam bedenine göre!",
@@ -180,7 +180,7 @@ wizard2 = Character("Kun",20,250,5,30,30,[
     "Kürek sesleri... benim için mi geliyor?",
     "Tabutun kapağı... üzerime kapanıyor..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 wizard3 = Character("Samuel",50,200,1,20,30,[
     "Babam bile beni durduramadı, sen kimsin?",
@@ -197,7 +197,7 @@ wizard3 = Character("Samuel",50,200,1,20,30,[
     "Suyun dibi... çok karanlık ve yalnız...",
     "Baba... bak... sonunda başardım, ölüyorum..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 # --- OKÇULAR ---
 
@@ -216,7 +216,7 @@ archer0 = Character("Emrey",20,250,6,25,30,[
     "Ah, kalbim... Bu sefer gerçekten kırıldı...",
     "Aşkım... beni bekle..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 archer1 = Character("Ahu",25,100,4,100,30,[
     "Hedef kilitlendi... Nefesini tut.",
@@ -233,7 +233,7 @@ archer1 = Character("Ahu",25,100,4,100,30,[
     "Ellerim... titriyor...",
     "Emrey... seni bekliyorum..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 archer2 = Character("Elegante",10,100,10,25,30,[
     "Şov başlasın! Benim adım Elegante!",
@@ -250,7 +250,7 @@ archer2 = Character("Elegante",10,100,10,25,30,[
     "Işıklar... sönüyor...",
     "Bu finali... beğenmedim..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 archer3 = Character("Eriksen",40,150,4,30,30,[
     "Bunu hızlı bitirelim, akşam yemeğine yetişmem lazım.",
@@ -267,10 +267,10 @@ archer3 = Character("Eriksen",40,150,4,30,30,[
     "Zahmet... bitti...",
     "Karanlık... ne kadar huzurlu..."
 ],
-    healthbar_image,armorbar_image)
+    healthbar_image,armorbar_image,100)
 
 #  //==========================================================================\\
-#  ||----------------------------------Kins------------------------------------||
+#  ||----------------------------------Kings------------------------------------||
 #  ||----------------------KingName/Healeth/SpecialPower-----------------------||
 #  \\==========================================================================//
 

@@ -2,4 +2,6 @@
 
 test.py
 update
-try.py
+
+__pycache__/
+*.pyc
