@@ -310,3 +310,14 @@ attack_lines = [
     "Saldırmak için koşuyorlar",
     "ŞUNLARA BAK! öldürmek için geliyorlar"
 ]
+
+#  //==========================================================================\\
+# ((-------------------------------Character_Pool-------------------------------))
+#  \\==========================================================================//
+
+Character_pool = {                                                  
+    "Gladyator" : [gladyator0,gladyator1,gladyator2,gladyator3,gladyator4],
+    "Wizard" : [wizard0,wizard1,wizard2,wizard3],                                              # Statları eklenecek v0.6.1
+    "Archer" : [archer0,archer1,archer2,archer3],
+    "King" : [king0,king1,king2]
+}

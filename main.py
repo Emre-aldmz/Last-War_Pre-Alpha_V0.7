@@ -6,14 +6,27 @@ import random
 import time 
 import os
 import sys
+
 from rich.console import Console
 from rich.panel import Panel
+from rich import print
+
+
+from characterdatabase import *
+
+console = Console() # consolu başlat
+
+red = "bold red"
+green = "bold green"
+blue = "bold blue"
+cyan = "cyan"
+black = "bold black"
+purple = "bold purple"
+white = "bold white"
 
 #  //==========================================================================\\
 # ((---------------------------------FUNCTIONS----------------------------------))
 #  \\==========================================================================//
-
-console = Console() # console başlat
 
 # <----------------------------Slow_Write_Mode---------------------------------->
 def slow_write(write, speed=0.04,style=None):
@@ -26,142 +39,188 @@ def slow_write(write, speed=0.04,style=None):
 def screen_clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-red = "bold red"
-green = "bold green"
-blue = "bold blue"
-cyan = "cyan"
-black = "bold black"
-purple = "bold purple"
+# <------------------------------Game_Intro--------------------------------->
+
+def game_intro():
+    screen_clear()
+
+    slow_write(r" _____                      ___  _     _",0.01,style=green)
+    slow_write(r"|  ___|                    / _ \| |   | |",0.01,style=green)
+    slow_write(r"| |__ _ __ ___  _ __ ___  / /_\ \ | __| |_ _ __ _ __ ___   __ _ ____",0.01,style=green)
+    slow_write(r"|  __| '_ ` _ \| '__/ _ \ |  _  | |/ _` | | '__| '_ ` _ \ / _` |_  /",0.01,style=green)
+    slow_write(r"| |__| | | | | | | |  __/ | | | | | (_| | | |  | | | | | | (_| |/ / ",0.01,style=green)
+    slow_write(r"\____/_| |_| |_|_|  \___| \_| |_/_|\__,_|_|_|  |_| |_| |_|\__,_/___|",0.01,style=green)
+
+    time.sleep(1)
+    screen_clear()
+
+    slow_write(r" _              _____     _     _____ _",0.01,style=blue)
+    slow_write(r"| |            |  ___|   (_)   |  _  | |",0.01,style=blue)
+    slow_write(r"| |__  _   _   | |__ _ __ _ ___| | | | |_ ___",0.01,style=blue)
+    slow_write(r"| '_ \| | | |  |  __| '__| / __| | | | __/ _ \ ",0.01,style=blue)
+    slow_write(r"| |_) | |_| |  | |__| |  | \__ \ \/' / ||  __/",0.01,style=blue)
+    slow_write(r"|_.__/ \__, |  \____/_|  |_|___/\_/\_\\__\___|",0.01,style=blue)
+    slow_write(r"        __/ |",0.01,style=blue)
+    slow_write(r"       |___/ ",0.01,style=blue)
+
+    time.sleep(1)
+    screen_clear()
+
+    slow_write(r"              _       ___   _____ _____   _    _  ___  ______",0.01,style=purple)
+    slow_write(r"             | |     / _ \ /  ___|_   _| | |  | |/ _ \ | ___ \ ",0.01,style=purple)
+    slow_write(r"             | |    / /_\ \\ `--.  | |   | |  | / /_\ \| |_/ /",0.01,style=purple)
+    slow_write(r"             | |    |  _  | `--. \ | |   | |/\| |  _  ||    /",0.01,style=purple)
+    slow_write(r"             | |____| | | |/\__/ / | |   \  /\  / | | || |\ \ ",0.01,style=purple)
+    slow_write(r"             \_____/\_| |_/\____/  \_/    \/  \/\_| |_/\_| \_|",0.01,style=purple)
+    loginScreen()     
 
 #  //==========================================================================\\
 # ((------------------------------Login_Screen----------------------------------))
 #  \\==========================================================================//
 
-screen_clear()
+EnemyPick_Character_lst = []
+Pick_Character_lst = []
+Character_lst = ["Gladyator","Gladyator","Wizard","Wizard","Archer","Archer","King"]
 
-slow_write(r" _____                      ___  _     _",0.01,style=green)
-slow_write(r"|  ___|                    / _ \| |   | |",0.01,style=green)
-slow_write(r"| |__ _ __ ___  _ __ ___  / /_\ \ | __| |_ _ __ _ __ ___   __ _ ____",0.01,style=green)
-slow_write(r"|  __| '_ ` _ \| '__/ _ \ |  _  | |/ _` | | '__| '_ ` _ \ / _` |_  /",0.01,style=green)
-slow_write(r"| |__| | | | | | | |  __/ | | | | | (_| | | |  | | | | | | (_| |/ / ",0.01,style=green)
-slow_write(r"\____/_| |_| |_|_|  \___| \_| |_/_|\__,_|_|_|  |_| |_| |_|\__,_/___|",0.01,style=green)
+def loginScreen():
+    print(Panel.fit("_"*70 +    "\n                         [1] #OYNA" +
+                                "\n                         [2] #AYARLAR" +
+                                "\n                         [3] #ÇIKIŞ",
+                                style="bold white"))
 
-time.sleep(1.5)
-screen_clear()
+    firstPick = int(input("Seçim: "))
 
-slow_write(r" _              _____     _     _____ _",0.01,style=blue)
-slow_write(r"| |            |  ___|   (_)   |  _  | |",0.01,style=blue)
-slow_write(r"| |__  _   _   | |__ _ __ _ ___| | | | |_ ___",0.01,style=blue)
-slow_write(r"| '_ \| | | |  |  __| '__| / __| | | | __/ _ \ ",0.01,style=blue)
-slow_write(r"| |_) | |_| |  | |__| |  | \__ \ \/' / ||  __/",0.01,style=blue)
-slow_write(r"|_.__/ \__, |  \____/_|  |_|___/\_/\_\\__\___|",0.01,style=blue)
-slow_write(r"        __/ |",0.01,style=blue)
-slow_write(r"       |___/ ",0.01,style=blue)
+    if firstPick == 1:
+        screen_clear()
+        startScreen()
+    elif firstPick == 2:
+        screen_clear()
+        settings()
+    elif firstPick == 3:
+        screen_clear()
+        print("Çıkış yapılıyor...")
+        time.sleep(2)
+        screen_clear()
+    else:
+        print("Geçerli bir seçenek seçin!!")
+        time.sleep(2)
+        screen_clear()
+        loginScreen()           
 
-time.sleep(1.5)
-screen_clear()
+def settings():
+    print(Panel.fit("Burası şuanlık boş" + "\n [1] Geri",style=red))
+    secondPick = int(input("Seçim: "))
+    if secondPick == 1:
+        screen_clear()
+        loginScreen()
+    else:
+        print("Geçerli bir seçenek seçin!!")
+        time.sleep(2)
+        screen_clear()
+        settings()
 
-slow_write(r"              _       ___   _____ _____   _    _  ___  ______",0.01,style=purple)
-slow_write(r"             | |     / _ \ /  ___|_   _| | |  | |/ _ \ | ___ \ ",0.01,style=purple)
-slow_write(r"             | |    / /_\ \\ `--.  | |   | |  | / /_\ \| |_/ /",0.01,style=purple)
-slow_write(r"             | |    |  _  | `--. \ | |   | |/\| |  _  ||    /",0.01,style=purple)
-slow_write(r"             | |____| | | |/\__/ / | |   \  /\  / | | || |\ \ ",0.01,style=purple)
-slow_write(r"             \_____/\_| |_/\____/  \_/    \/  \/\_| |_/\_| \_|",0.01,style=purple)     
+def startScreen():
+    print("Last War Başlıyor...")
+    time.sleep(1)
+    start_screen = input("Karakter seçimi için Enter'a Basınız.")
+    if start_screen == "":
+        screen_clear()
+        CharacterPickScreen()
+    else:
+        print("Tekrar deneyiniz!")
+        time.sleep(2)
+        screen_clear()
+        start_screen()
 
-
+def CharacterPickScreen():
+    Pick_Character_lst.clear()
+    EnemyPick_Character_lst.clear()
+    for k,ClassName in enumerate(Character_lst):
+        attemp = 3
+        selected = False
+        SelectCharacter = [char for char in Character_pool[ClassName] if char not in Pick_Character_lst]
+        print(Panel.fit(f"--- {ClassName.upper()} Listesi --- [{k}/{len(Character_lst)}] Seçim --- {Pick_Character_lst}" ,style=blue))
+        for i,char in enumerate(SelectCharacter):
+            print(f"{[i+1]} {char.Name} \n❤️Can:{char.Health} | ⚔️Güç:{char.Power} | 🔄 Seri Vuruş: {char.Repetitive}")
+            print("\n\n")
+        while attemp > 0:          
+            try: 
+                PickNumber = int(input("Karakter seçiniz: "))
+                if 1 <= PickNumber <= len(SelectCharacter):
+                    SelectedCharacter = SelectCharacter[PickNumber-1]
+                    Pick_Character_lst.append(SelectedCharacter)
+                    selected = True
+                    print(f"✅ {SelectedCharacter} Seçildi!!")
+                    break
+                else:
+                    attemp -= 1
+                    print(f"❌ Lütfen geçerli bir Karekter numarısı seçiniz. Kalan deneme hakkınız '{attemp}'")
+            except:
+                attemp -= 1
+                print(f"❌ Lütfen sadece rakam giriniz. Kalan deneme hakkınız '{attemp}'")
+        if attemp == 0 or selected == False:
+            SelectedCharacter = random.choice(SelectCharacter)
+            Pick_Character_lst.append(SelectedCharacter)
+            selected = True
+            print("⚠️ Karakter rastgele seçildi!")
+            time.sleep(1)
+            
+        screen_clear()
+    screen_clear()
+    print(Panel.fit(f"{Pick_Character_lst}",title="Seçilen Karakterler",style=white))
+    print(Panel.fit("Seçilen karakterleri onaylamak için Enter'a basınız!",style=white))
+    print("\n\n")
+    print(Panel.fit("[1] Geri",style=white))
+    start_screen2 = input("")
+    if start_screen2 == "":
+        time.sleep(2)
+        screen_clear()
+        print("Karşı takım kuruluyor")
+        time.sleep(1)
+        screen_clear()
+        for i in range(3):
+            slow_write("...",0.5)
+            time.sleep(0.5)
+            screen_clear()
         
-        
+        for EnemyTeam in Character_lst:
+            EnemyTeamSelect = Character_pool[EnemyTeam]
+            EnemyTeamSelected = random.choice(EnemyTeamSelect)
+            EnemyPick_Character_lst.append(EnemyTeamSelected)
+        print(f"✅ Karşı takım oluşturuldu!")
+        time.sleep(1)
+        screen_clear()
+        print(Panel.fit(f"{Pick_Character_lst}",title="Senin Takımın",style=white))
+        print(Panel.fit(f"{EnemyPick_Character_lst}",title="Karşı Takım",style=white))
+        start_screen3 = input("Başlamak için Enter'a basınız")
+        time.sleep(2)
+        screen_clear()
 
+        # Burdan devam edicez!!!
+
+    elif start_screen2 == "1":
+        screen_clear()
+        print(Panel.fit("Geri gidiliyor",style=white))
+        time.sleep(1)
+        screen_clear()
+        CharacterPickScreen()
+    else:
+        screen_clear()
+        print(Panel.fit("Geri gidiliyor",style=white))
+        time.sleep(1)
+        screen_clear()
+        CharacterPickScreen()
+    
 #  //==========================================================================\\
-# ((--------------------------------Interface-----------------------------------))
+# ((------------------------------Game_Interface--------------------------------))
 #  \\==========================================================================//
 
-Character_pool = {                                                  
-    "Gladyator" : ["Alonzo","Erok","Proxgaint","Rockby"],
-    "Wizard" : ["Gloria","Adam","Kun","Samuel"],                             # Statları eklenecek v1.5
-    "Archer" : ["Emrey","Ahu","Elegante","Eriksen"],
-    "King" : ["Mr. Salvo","Kin","T.U.R.X"]
-}
 
-Pick_Character_lst = []
-Character_lst = ["Gladyator","Wizard","Archer","King"]
 
-pick0=" "
-while pick0 != "quit" and pick0 != "3":
-    slow_write("<<==========================================================================>>",0.001)
-    slow_write("                          (1)  #Oyna",0.001)
-    slow_write("                          (2)  #Ayarlar",0.001)
-    slow_write("                          (3)  #Quit",0.001)
 
-    pick0 = input().lower()
-    screen_clear()
-    if pick0 == "1" or pick0 == "oyna":
-
-        for x in Character_lst:
-            attemp = 3 # deneme hakki
-            character_now = Character_pool[x]
-            character_number = len(character_now)
-            True_pick = False
-            while 0 < attemp :
-
-                try:
-                    print("*"*100)
-                    time.sleep(1)
-                    number = "/".join([str(sayi) for sayi in range(1,character_number+1)]) # bunun sayesinde 1/2/3 yazırıyorum ne kadar varsa 1 den character_numer +1 e kadar
-                    slow_write(f"Mevcut karakterler: {character_now}")                          # çünkü character_number 0 dan başlıyor 1 den +1 ine kadar
-                    time.sleep(1)
-                    pick = int(input(f"{x} için Seçin: {number}: "))
-                    time.sleep(1)
-                    if pick != 0:
-                        Pick_Character_lst.append(character_now[pick-1])
-                        print(f"{character_now[pick-1]} Seçildi.")
-                        time.sleep(1)
-                        True_pick = True
-                        break
-                    else:
-                        attemp -= 1
-                        if attemp != 0:
-                            print("Lütfen geçerli bir rakam giriniz!!")
-                            time.sleep(1)
-                            print(f"Deneme Hakkınız: {attemp}")
-                            time.sleep(1)
-                        else:
-                            print(f"Deneme hakkınız bitmiştir {x} rastgele atanmıştır!!")
-                            time.sleep(1)
-                except:
-                    attemp -= 1
-                    if attemp != 0:
-                        print("Lütfen geçerli bir rakam giriniz!!")
-                        time.sleep(1)
-                        print(f"Deneme Hakkınız: {attemp}")
-                        time.sleep(1)
-                    else:
-                        print(f"Deneme hakkınız bitmiştir {x} rastgele atanmıştır!!")
-                        time.sleep(1)
-
-            if attemp == 0 or True_pick == False:
-                randomCharacter = random.choice(character_now)
-                Pick_Character_lst.append(randomCharacter)
-        
-
-        print(f"Takım oluşturuldu: {Pick_Character_lst}")
-        time.sleep(1)
-
-        EnemyPick_Character_lst = [] # LETS GO FUCKİNG GO
-        for i in Character_lst:
-            EnemyPick_Character = random.choice(Character_pool[i])   # Botun takımı 
-            EnemyPick_Character_lst.append(EnemyPick_Character)
-        print(f"Rakip takımın savaşçıları ve kralı: {EnemyPick_Character_lst}")
-        break
-
-#  //==========================================================================\\
-# ((--------------------------------Settings------------------------------------))
-#  \\==========================================================================//   
-
-    if pick0 == "ayarlar" or pick0 == "2":          # settings kısmı şuanlık boş
-        print("empty for now")
-        break
-
+# game_intro()
+# loginScreen()
+CharacterPickScreen()
 
 
 

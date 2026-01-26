@@ -7,6 +7,7 @@ import time
 import os
 import sys
 from rich.console import Console
+from rich.panel import Panel
 
 #  //==========================================================================\\
 # ((------------------------------------OOP-------------------------------------))
@@ -53,6 +54,9 @@ class Character():
     
     def attack(self,enemy):  
         print(" ")
+
+    def __repr__(self): # Önemli bir fonksiyon (İsimlerin alınıp kullanılmasını sağlıyor)
+        return self.Name
         
 class King(Character):
     def __init__(self,name,health,special_power,battle_cries,health_bar):
