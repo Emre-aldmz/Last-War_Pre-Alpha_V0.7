@@ -168,15 +168,16 @@ def CharacterPickScreen():
         screen_clear()
     screen_clear()
     print(Panel.fit(f"{Pick_Character_lst}",title="Seçilen Karakterler",style=white))
-    print(Panel.fit("Seçilen karakterleri onaylamak için Enter'a basınız!",style=white))
     print("\n\n")
-    print(Panel.fit("[1] Geri",style=white))
-    start_screen2 = input("")
-    if start_screen2 == "":
+    print(Panel.fit("               [(1)Enter] Onayla   ",style=white))
+    print(Panel.fit("               [2] Tekrar Oluştur  ",style=white))
+    print(Panel.fit("               [3] Çıkış           ",style=white))
+    start_screen2 = input("Seçim: ")
+    if start_screen2 == "" or start_screen2 == "1":
         time.sleep(2)
         screen_clear()
-        print("Karşı takım kuruluyor")
-        time.sleep(1)
+        print("Karşı takım kuruluyor...")
+        time.sleep(1.5)
         screen_clear()
         for i in range(3):
             slow_write("...",0.5)
@@ -192,28 +193,56 @@ def CharacterPickScreen():
         screen_clear()
         print(Panel.fit(f"{Pick_Character_lst}",title="Senin Takımın",style=white))
         print(Panel.fit(f"{EnemyPick_Character_lst}",title="Karşı Takım",style=white))
-        start_screen3 = input("Başlamak için Enter'a basınız")
+        start_screen3 = input("Başlamak için Enter'a basınız!")
         time.sleep(2)
         screen_clear()
+        BattleScreen() # battle screen e gider
 
-        # Burdan devam edicez!!!
-
-    elif start_screen2 == "1":
+    elif start_screen2 == "2":
         screen_clear()
-        print(Panel.fit("Geri gidiliyor",style=white))
-        time.sleep(1)
-        screen_clear()
-        CharacterPickScreen()
-    else:
-        screen_clear()
-        print(Panel.fit("Geri gidiliyor",style=white))
-        time.sleep(1)
+        print(Panel.fit("Tekrar oluşturulmak üzere geri gidiliyor",style=white))
+        time.sleep(2)
         screen_clear()
         CharacterPickScreen()
     
-#  //==========================================================================\\
-# ((------------------------------Game_Interface--------------------------------))
-#  \\==========================================================================//
+    elif start_screen2 ==  "3":
+        print("Çıkış yapılıyor...")
+        time.sleep(2)
+        screen_clear()
+        loginScreen()
+        
+    else:
+        screen_clear()
+        print(Panel.fit("Tekrar oluşturulmak üzere geri gidiliyor",style=white))
+        time.sleep(2)
+        screen_clear()
+        CharacterPickScreen()
+
+def BattleScreen():
+    Round = 1 # tur sayısı
+    
+    while len(Pick_Character_lst) > 0 and len(EnemyPick_Character_lst): 
+        for i,char in enumerate(Pick_Character_lst):
+            if i <=5:
+                healthbar = char.indexHealth()
+                armorbar = char.indexArmor()
+                print(Panel.fit(f"[{i+1}]{char.Name}: {char.HealthBar[healthbar]} [{char.Health}]  {char.ArmorBar[armorbar]} [{char.Armor}]"))
+        for k in range(10):
+            print("\n")
+        
+        for x,enemychar in enumerate(EnemyPick_Character_lst):
+            if x <=5:
+                Enemyhealthbar = enemychar.indexHealth()
+                Enemyarmorbar = enemychar.indexArmor()
+                print(Panel.fit(f"[{x+1}]{enemychar.Name}: {enemychar.HealthBar[Enemyhealthbar]} [{enemychar.Health}]  {enemychar.ArmorBar[Enemyarmorbar]} [{enemychar.Armor}]"))
+    try:
+        print("")
+    except:
+        print("")
+
+
+        
+
 
 
 

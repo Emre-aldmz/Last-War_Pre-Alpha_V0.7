@@ -45,15 +45,64 @@ class Character():
             return 0
         if self.Armor <=0:
             return 10
+        ratio1 = self.Armor / self.MaxArmor
+        reverse_y = int(10 * ratio1)
+        y = 10 - reverse_y
+        return y
         
-
     def defender(self):
-        print(" ")
-        
-        
-    
-    def attack(self,enemy):  
-        print(" ")
+        if self.Health < self.MaxHealth:
+            self.Health = min(self.Health+self.DefenderHealth, self.MaxHealth)
+            barindex = self.indexHealth()
+            print(f"{self.Name}: Defans yapıyor. Can basıldı! Can:[{self.Health}]/{self.HealthBar[barindex]}")
+        # else:
+            # seçim fırsatı zaten vermeyeceğiz 
+            
+    def attack(self,enemy):
+        if enemy.Armor > 0:
+            possibility = random.randint(1,100)
+            if possibility < self.CriticalHit:
+                enemy.Armor -= self.Power*2
+                if enemy.Armor <= 0:
+                    enemy.Armor = 0
+                    print(f"{enemy.Name}: Zırhı Krıldı!")
+                else:  
+                    print(f"{self.Name}: !!Kritik Vuruş!! Saldırıyor ==> {enemy.Name}")
+                    time.sleep(1)
+                    barindex = enemy.indexArmor()
+                    print(f"{enemy.Name}: Kalan Kalkanı ==> [{enemy.Armor}]/{enemy.ArmorBar[barindex]}")
+            else:
+                enemy.Armor -= self.Power
+                if enemy.Armor <= 0:
+                    enemy.Armor = 0 
+                    print(f"{enemy.Name}: Zırh Kırıldı!")
+                else:  
+                    print(f"{self.Name}: Saldırıyor ==> {enemy.Name}")
+                    time.sleep(1)
+                    barindex = enemy.indexArmor()
+                    print(f"{enemy.Name}: Kalan Kalkanı ==> [{enemy.Armor}]/{enemy.ArmorBar[barindex]}")                
+        else:
+            possibility = random.randint(1,100)
+            if possibility < self.CriticalHit:
+                enemy.Health -= self.Power*2
+                if enemy.Health <= 0:
+                    enemy.Health = 0
+                    print(f"{enemy.Name}: Öldü!")
+                else:
+                    print(f"{self.Name}: !!Kritik Vuruş!! Saldırıyor ==> {enemy.Name}")
+                    time.sleep(1)
+                    barindex = enemy.indexHealth()
+                    print(f"{enemy.Name}: Kalan Can ==> [{enemy.Health}]/{enemy.HealthBar[barindex]}")
+            else:
+                enemy.Health -= self.Power  
+                if enemy.Health <= 0:
+                    enemy.Health = 0
+                    print(f"{enemy.Name}: Öldü!")
+                else:
+                    print(f"{self.Name}: Saldırıyor ==> {enemy.Name}")
+                    time.sleep(1)
+                    barindex = enemy.indexHealth()
+                    print(f"{enemy.Name}: Kalan Can ==> [{enemy.Health}]/{enemy.HealthBar[barindex]}")
 
     def __repr__(self): # Önemli bir fonksiyon (İsimlerin alınıp kullanılmasını sağlıyor)
         return self.Name
