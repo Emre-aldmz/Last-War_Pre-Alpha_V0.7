@@ -6,6 +6,7 @@ import random
 import time 
 import os
 import sys
+import copy
 
 from rich.console import Console
 from rich.panel import Panel
@@ -183,11 +184,13 @@ def CharacterPickScreen():
             slow_write("...",0.5)
             time.sleep(0.5)
             screen_clear()
-        
-        for EnemyTeam in Character_lst:
-            EnemyTeamSelect = Character_pool[EnemyTeam]
-            EnemyTeamSelected = random.choice(EnemyTeamSelect)
-            EnemyPick_Character_lst.append(EnemyTeamSelected)
+
+        for ClassName in Character_lst:
+            enemy_names = [c.Name for c in EnemyPick_Character_lst]
+            Select_character = [char for char in Character_pool[ClassName] if char.Name not in enemy_names] # Random Enemy picked
+            original_select = random.choice(Select_character)
+            selected_clone = copy.deepcopy(original_select)
+            EnemyPick_Character_lst.append(selected_clone)
         print(f"✅ Karşı takım oluşturuldu!")
         time.sleep(1)
         screen_clear()
@@ -221,7 +224,9 @@ def CharacterPickScreen():
 def BattleScreen():
     Round = 1 # tur sayısı
     
-    while len(Pick_Character_lst) > 0 and len(EnemyPick_Character_lst): 
+    while len(Pick_Character_lst) > 0 and len(EnemyPick_Character_lst) > 0:
+        screen_clear()
+        print(Panel.fit(f"<============================Tur:{Round}============================>")) 
         for i,char in enumerate(Pick_Character_lst):
             if i <=5:
                 healthbar = char.indexHealth()
@@ -235,11 +240,52 @@ def BattleScreen():
                 Enemyhealthbar = enemychar.indexHealth()
                 Enemyarmorbar = enemychar.indexArmor()
                 print(Panel.fit(f"[{x+1}]{enemychar.Name}: {enemychar.HealthBar[Enemyhealthbar]} [{enemychar.Health}]  {enemychar.ArmorBar[Enemyarmorbar]} [{enemychar.Armor}]"))
-    try:
-        print("")
-    except:
-        print("")
+        try:
+            UpdateList = " ".join([f"[{i+1}]{name}" for i,name in enumerate(Pick_Character_lst)])
+            print(Panel.fit(f"Hamle için karakterinizi Seçin! {UpdateList}"))
+            Myindex = int(input(" ")) - 1
+            if 0 <= Myindex < len(Pick_Character_lst):
+                MyHero = Pick_Character_lst[Myindex]
+            else:
+                print("Geçerli bir sayı karakter sayısı seçiniz!")
+                continue
+            
+            print(Panel.fit(f"Seçilen karakter için hamle seçiniz [1]Saldır [2]Savun"))
+            MovePick = int(input(""))
+            if MovePick == 1:
+                UpdateListEnemy = " ".join([f"[{i+1}]{name}" for i,name in enumerate(EnemyPick_Character_lst)])
+                print(Panel.fit(f"Saldırmak için bir rakip seçiniz {UpdateListEnemy}"))
+                Targetİndex = int(input(" ")) - 1
+                if 0 <= Targetİndex < len(EnemyPick_Character_lst):
+                    TargetEnemy = EnemyPick_Character_lst[Targetİndex]
+                    line = random.choice(MyHero.BattleCries)
+                    slow_write(f"{MyHero.Name}: {line} ",style=cyan)
+                    MyHero.attack(TargetEnemy)
 
+                    if TargetEnemy.Health <= 0:
+                        line1 = random.choice(MyHero.KillLines)
+                        slow_write(f"{MyHero.Name}: {line1}",style=cyan)
+                        time.sleep(1)
+                        line2 = random.choice(TargetEnemy.DieLines)
+                        slow_write(f"{TargetEnemy.Name}: {line2}",style=cyan)
+                        EnemyPick_Character_lst.remove(TargetEnemy)
+                
+                else:
+                    print("Geçersiz hedef hakkınızı kaybettiniz!!")
+            elif MovePick == 2:
+                MyHero.defender()
+                time.sleep(2)
+            else:
+                print("Geçersiz hamle!")
+                continue
+            
+            time.sleep(2)
+            Round += 1    
+
+        except ValueError:
+            print("Lütfen sadece sayı giriniz!")
+
+print("Oyun bitti sanma hahaha")
 
         
 

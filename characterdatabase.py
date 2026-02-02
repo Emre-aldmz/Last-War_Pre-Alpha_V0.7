@@ -40,7 +40,7 @@ armorbar_image = [
     "🛡️ [███░░░░░░░] 30/100", 
     "🛡️ [██░░░░░░░░] 20/100",
     "🛡️ [█░░░░░░░░░] 10/100", 
-    "❌ [░░░░░░░░░░] 0/100"   
+    "💥 [░░░░░░░░░░] 0/100"   
 ] 
 # --- GLADYATÖRLER ---
 
@@ -274,26 +274,26 @@ archer3 = Character("Eriksen",40,150,4,30,30,[
 #  ||----------------------KingName/Healeth/SpecialPower-----------------------||
 #  \\==========================================================================//
 
-king0 = King("Mr. Salvo", 1000, "Kanlı İmza", [
+king0 = King("Mr. Salvo", 1200, "Kanlı İmza", [
     "Her şeyin bir bedeli vardır evlat. Senin bedelin ise... ruhun.",
     "Masada kaybeden daima sen olacaksın. Kasa her zaman kazanır.",
     "Burası sandığından daha sıcak olacak. Ceketini çıkarmana gerek yok, yanacaksın."
 ],
-    healthbar_image)
+    healthbar_image,armorbar_image)
 
-king1 = King("General Kin", 1000, "Sıkıyönetim", [
+king1 = King("General Kin", 1200, "Sıkıyönetim", [
     "Zayıflık, vatana ihanettir. Ve ben hainleri asla affetmem.",
     "Diz çök! Karşında bir düşman değil, mutlak otorite duruyor.",
     "Kaos getirenler, düzenin kılıcıyla yok edilecektir. İtaat et."
 ],
-    healthbar_image)
+    healthbar_image,armorbar_image)
 
-king2 = King("T.U.R.X", 1000, "Overclock", [
+king2 = King("T.U.R.X", 1200, "Overclock", [
     "Organik yaşam formu tespit edildi. İmha protokolü: BAŞLATILDI.",
     "Acı, korku, umut... Yazılımımdaki gereksiz veriler. Siz ise sadece silinecek bir dosyadan ibaretsiniz.",
     "Mantık tek gerçektir. Ve mantık, senin yok olmanı emrediyor."
 ],
-    healthbar_image)
+    healthbar_image,armorbar_image)
 
 #  //==========================================================================\\
 # ((---------------------------Defender/Attack-lines----------------------------))
