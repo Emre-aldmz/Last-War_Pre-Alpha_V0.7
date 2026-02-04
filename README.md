@@ -1,11 +1,11 @@
 # LAST WAR (Beta) 
 
-'''text
+```text
 Coming Soon
-'''
+```
 
 ## Schema
-'''bash
+```bash
 LAST_WAR/
 ├── .gitattributes
 ├── .gitignore
@@ -13,9 +13,10 @@ LAST_WAR/
 ├── classes.py
 ├── main.py
 └── README.md
+```
 
 # Signature
-'''bash
+```bash
 %100 Developer
     └──by Develover
-'''
+```
