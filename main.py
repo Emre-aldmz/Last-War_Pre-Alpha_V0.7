@@ -13,7 +13,7 @@ from rich.panel import Panel
 from rich import print
 
 
-from characterdatabase import *
+from character_db import *
 
 console = Console() # consolu başlat
 
@@ -273,8 +273,11 @@ def BattleScreen():
                 else:
                     print("Geçersiz hedef hakkınızı kaybettiniz!!")
             elif MovePick == 2:
-                MyHero.defender()
-                time.sleep(2)
+                result = MyHero.defender()
+                if result == False:
+                    print("Tekrar deneyiniz")
+                    time.sleep(1)
+                    continue
             else:
                 print("Geçersiz hamle!")
                 continue

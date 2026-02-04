@@ -56,8 +56,11 @@ class Character():
             barindex = self.indexHealth()
             print(f"{self.Name}: Defans yapıyor. Can basıldı! Can:[{self.Health}]/{self.HealthBar[barindex]}")
             time.sleep(1.5)
-        # else:
-            # seçim fırsatı zaten vermeyeceğiz 
+            return True # Main e bilgi gönderiyoruz
+        else:
+            print(f"{self.Name}: Canı zaten ful❤️")
+            time.sleep(1)
+            return False # False ise BattleScreen() continue ile while döngüsünün başına dönücek
             
     def attack(self,enemy):
         if enemy.Armor > 0:
@@ -66,25 +69,25 @@ class Character():
                 enemy.Armor -= self.Power*2
                 if enemy.Armor <= 0:
                     enemy.Armor = 0
-                    print(f"{enemy.Name}: Zırhı Krıldı!")
+                    print(f"{enemy.Name}: Zırhı Krıldı💥")
                     time.sleep(1.5)
                 else:  
-                    print(f"{self.Name}: !!Kritik Vuruş!! Saldırıyor ==> {enemy.Name}")
+                    print(f"{self.Name}: 💥💥Kritik Vuruş💥💥 Saldırıyor ==> {enemy.Name}")
                     time.sleep(1)
                     barindex = enemy.indexArmor()
-                    print(f"{enemy.Name}: Kalan Kalkanı ==> [{enemy.Armor}]/{enemy.ArmorBar[barindex]}")
+                    print(f"{enemy.Name}: Kalan Kalkanı🛡️ ==> [{enemy.Armor}]/{enemy.ArmorBar[barindex]}")
                     time.sleep(1.5)
             else:
                 enemy.Armor -= self.Power
                 if enemy.Armor <= 0:
                     enemy.Armor = 0 
-                    print(f"{enemy.Name}: Zırh Kırıldı!")
+                    print(f"{enemy.Name}: Zırh Kırıldı💥")
                     time.sleep(1.5)
                 else:  
-                    print(f"{self.Name}: Saldırıyor ==> {enemy.Name}")
+                    print(f"{self.Name}: Saldırıyor⚔️ ==> {enemy.Name}")
                     time.sleep(1.5)
                     barindex = enemy.indexArmor()
-                    print(f"{enemy.Name}: Kalan Kalkanı ==> [{enemy.Armor}]/{enemy.ArmorBar[barindex]}")
+                    print(f"{enemy.Name}: Kalan Kalkanı🛡️ ==> [{enemy.Armor}]/{enemy.ArmorBar[barindex]}")
                     time.sleep(1.5)                
         else:
             possibility = random.randint(1,100)
@@ -92,25 +95,25 @@ class Character():
                 enemy.Health -= self.Power*2
                 if enemy.Health <= 0:
                     enemy.Health = 0
-                    print(f"{enemy.Name}: Öldü!")
+                    print(f"{enemy.Name}: Öldü💀")
                     time.sleep(1.5)
                 else:
-                    print(f"{self.Name}: !!Kritik Vuruş!! Saldırıyor ==> {enemy.Name}")
+                    print(f"{self.Name}: 💥💥Kritik Vuruş💥💥 Saldırıyor ==> {enemy.Name}")
                     time.sleep(1.5)
                     barindex = enemy.indexHealth()
-                    print(f"{enemy.Name}: Kalan Can ==> [{enemy.Health}]/{enemy.HealthBar[barindex]}")
+                    print(f"{enemy.Name}: Kalan Can❤️ ==> [{enemy.Health}]/{enemy.HealthBar[barindex]}")
                     time.sleep(1.5)
             else:
                 enemy.Health -= self.Power  
                 if enemy.Health <= 0:
                     enemy.Health = 0
-                    print(f"{enemy.Name}: Öldü!")
+                    print(f"{enemy.Name}: Öldü💀")
                     time.sleep(1.5)
                 else:
-                    print(f"{self.Name}: Saldırıyor ==> {enemy.Name}")
+                    print(f"{self.Name}: Saldırıyor⚔️ ==> {enemy.Name}")
                     time.sleep(1.5)
                     barindex = enemy.indexHealth()
-                    print(f"{enemy.Name}: Kalan Can ==> [{enemy.Health}]/{enemy.HealthBar[barindex]}")
+                    print(f"{enemy.Name}: Kalan Can❤️ ==> [{enemy.Health}]/{enemy.HealthBar[barindex]}")
                     time.sleep(1.5)
 
     def __repr__(self): # Önemli bir fonksiyon (İsimlerin alınıp kullanılmasını sağlıyor)
