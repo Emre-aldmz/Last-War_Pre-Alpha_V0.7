@@ -69,6 +69,8 @@ class Character():
                 enemy.Armor -= self.Power*2
                 if enemy.Armor <= 0:
                     enemy.Armor = 0
+                    print(f"{self.Name}: 💥💥Kritik Vuruş💥💥 Saldırıyor ==> {enemy.Name}")
+                    time.sleep(1)
                     print(f"{enemy.Name}: Zırhı Krıldı💥")
                     time.sleep(1.5)
                 else:  
@@ -80,7 +82,9 @@ class Character():
             else:
                 enemy.Armor -= self.Power
                 if enemy.Armor <= 0:
-                    enemy.Armor = 0 
+                    enemy.Armor = 0
+                    print(f"{self.Name}: Saldırıyor⚔️ ==> {enemy.Name}")
+                    time.sleep(1.5) 
                     print(f"{enemy.Name}: Zırh Kırıldı💥")
                     time.sleep(1.5)
                 else:  
@@ -95,6 +99,8 @@ class Character():
                 enemy.Health -= self.Power*2
                 if enemy.Health <= 0:
                     enemy.Health = 0
+                    print(f"{self.Name}: 💥💥Kritik Vuruş💥💥 Saldırıyor ==> {enemy.Name}")
+                    time.sleep(1.5)
                     print(f"{enemy.Name}: Öldü💀")
                     time.sleep(1.5)
                 else:
@@ -107,6 +113,8 @@ class Character():
                 enemy.Health -= self.Power  
                 if enemy.Health <= 0:
                     enemy.Health = 0
+                    print(f"{self.Name}: Saldırıyor⚔️ ==> {enemy.Name}")
+                    time.sleep(1.5)
                     print(f"{enemy.Name}: Öldü💀")
                     time.sleep(1.5)
                 else:
@@ -118,8 +126,8 @@ class Character():
 
     def __repr__(self): # Önemli bir fonksiyon (İsimlerin alınıp kullanılmasını sağlıyor)
         return self.Name
-        
-class King(Character):
+            
+class King(Character): # Krallar ve özellikleri daha eklenmedi
     def __init__(self,name,health,special_power,battle_cries,health_bar,armor_bar):
         super().__init__(name,0,health,0,0,0,battle_cries,0,0,health_bar,armor_bar,0)     
         self.SpecialPower = special_power

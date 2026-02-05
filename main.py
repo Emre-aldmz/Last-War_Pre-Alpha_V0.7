@@ -81,8 +81,8 @@ def game_intro():
 
 EnemyPick_Character_lst = []
 Pick_Character_lst = []
-Character_lst = ["Gladyator","Gladyator","Wizard","Wizard","Archer","Archer","King"]
-
+Character_lst = ["Gladyator","Gladyator","Wizard","Wizard","Archer","Archer"]
+King_lst = ["King"] # daha krallar ve bufları oyuna eklenmedi 
 def loginScreen():
     print(Panel.fit("_"*70 +    "\n                         [1] #OYNA" +
                                 "\n                         [2] #AYARLAR" +
@@ -175,15 +175,10 @@ def CharacterPickScreen():
     print(Panel.fit("               [3] Çıkış           ",style=white))
     start_screen2 = input("Seçim: ")
     if start_screen2 == "" or start_screen2 == "1":
-        time.sleep(2)
         screen_clear()
         print("Karşı takım kuruluyor...")
-        time.sleep(1.5)
+        time.sleep(1)
         screen_clear()
-        for i in range(3):
-            slow_write("...",0.5)
-            time.sleep(0.5)
-            screen_clear()
 
         for ClassName in Character_lst:
             enemy_names = [c.Name for c in EnemyPick_Character_lst]
@@ -197,27 +192,27 @@ def CharacterPickScreen():
         print(Panel.fit(f"{Pick_Character_lst}",title="Senin Takımın",style=white))
         print(Panel.fit(f"{EnemyPick_Character_lst}",title="Karşı Takım",style=white))
         start_screen3 = input("Başlamak için Enter'a basınız!")
-        time.sleep(2)
+        time.sleep(1)
         screen_clear()
         BattleScreen() # battle screen e gider
 
     elif start_screen2 == "2":
         screen_clear()
         print(Panel.fit("Tekrar oluşturulmak üzere geri gidiliyor",style=white))
-        time.sleep(2)
+        time.sleep(1)
         screen_clear()
         CharacterPickScreen()
     
     elif start_screen2 ==  "3":
         print("Çıkış yapılıyor...")
-        time.sleep(2)
+        time.sleep(1)
         screen_clear()
         loginScreen()
         
     else:
         screen_clear()
         print(Panel.fit("Tekrar oluşturulmak üzere geri gidiliyor",style=white))
-        time.sleep(2)
+        time.sleep(1)
         screen_clear()
         CharacterPickScreen()
 
@@ -227,11 +222,10 @@ def BattleScreen():
     while len(Pick_Character_lst) > 0 and len(EnemyPick_Character_lst) > 0:
         screen_clear()
         print(Panel.fit(f"<============================Tur:{Round}============================>")) 
-        for i,char in enumerate(Pick_Character_lst):
-            if i <=5:
-                healthbar = char.indexHealth()
-                armorbar = char.indexArmor()
-                print(Panel.fit(f"[{i+1}]{char.Name}: {char.HealthBar[healthbar]} [{char.Health}]  {char.ArmorBar[armorbar]} [{char.Armor}]"))
+        for i,char in enumerate(Pick_Character_lst):            
+            healthbar = char.indexHealth()
+            armorbar = char.indexArmor()
+            print(Panel.fit(f"[{i+1}]{char.Name}: {char.HealthBar[healthbar]} [{char.Health}]  {char.ArmorBar[armorbar]} [{char.Armor}]"))
         for k in range(10):
             print("\n")
         
@@ -255,9 +249,9 @@ def BattleScreen():
             if MovePick == 1:
                 UpdateListEnemy = " ".join([f"[{i+1}]{name}" for i,name in enumerate(EnemyPick_Character_lst)])
                 print(Panel.fit(f"Saldırmak için bir rakip seçiniz {UpdateListEnemy}"))
-                Targetİndex = int(input(" ")) - 1
-                if 0 <= Targetİndex < len(EnemyPick_Character_lst):
-                    TargetEnemy = EnemyPick_Character_lst[Targetİndex]
+                TargetIndex = int(input(" ")) - 1
+                if 0 <= TargetIndex < len(EnemyPick_Character_lst):
+                    TargetEnemy = EnemyPick_Character_lst[TargetIndex]
                     line = random.choice(MyHero.BattleCries)
                     slow_write(f"{MyHero.Name}: {line} ",style=cyan)
                     MyHero.attack(TargetEnemy)
@@ -269,6 +263,7 @@ def BattleScreen():
                         line2 = random.choice(TargetEnemy.DieLines)
                         slow_write(f"{TargetEnemy.Name}: {line2}",style=cyan)
                         EnemyPick_Character_lst.remove(TargetEnemy)
+                        time.sleep(1)
                 
                 else:
                     print("Geçersiz hedef hakkınızı kaybettiniz!!")
@@ -283,43 +278,58 @@ def BattleScreen():
                 continue
             
             time.sleep(2)
-            Round += 1    
+              
 
         except ValueError:
             print("Lütfen sadece sayı giriniz!")
-
-print("Oyun bitti sanma hahaha")
-
         
+        # Rakip Saldırısı
+        print(Panel.fit("Sıra Rakipte"))
+        time.sleep(1)
+        EnemyHero = random.choice(EnemyPick_Character_lst)
+        EnemyMovePick = random.randint(1,100)
+        if EnemyMovePick <= 20:
+            EnemyHero.defender()
+        elif EnemyMovePick > 20:
+            Enemyline = random.choice(EnemyHero.BattleCries)
+            slow_write(f"{EnemyHero.Name}: {Enemyline}",style=cyan)
+            EnemyTarget = random.choice(Pick_Character_lst)
+            EnemyHero.attack(EnemyTarget)
+            if EnemyTarget.Health <= 0:
+                Enemyline1 = random.choice(EnemyHero.KillLines)
+                slow_write(f"{EnemyHero.Name}: {Enemyline1}",style=cyan)
+                time.sleep(1)
+                Enemyline2 = random.choice(EnemyTarget.DieLines)
+                slow_write(f"{EnemyTarget.Name}: {Enemyline2}")
+                time.sleep(1)
+                Pick_Character_lst.remove(EnemyTarget)
 
+        time.sleep(2)
+        Round += 1
+    
+    screen_clear()
+    if len(Pick_Character_lst) > 0:
+        slow_write("                         _    _  _____ _   _",0.01,style="yellow blink")
+        slow_write("                        | |  | ||  _  | \ | |",0.01,style="yellow blink")
+        slow_write("                        | |  | || | | |  \| |",0.01,style="yellow blink")
+        slow_write("                        | |/\| || | | | . ` |",0.01,style="yellow blink")
+        slow_write("                        \  /\  /\ \_/ / |\  |",0.01,style="yellow blink")
+        slow_write("                         \/  \/  \___/\_| \_/",0.01,style="yellow blink")
+        time.sleep(3)
+        print("Ana menüye dönülüyor")
+        time.sleep(1)
+        loginScreen()
+    
+    elif len(Pick_Character_lst) <= 0:
+        slow_write("                         _     _____ _____ _____ ",0.01,style="bold red blink")
+        slow_write("                        | |   |  _  /  ___|  ___|",0.01,style="bold red blink")
+        slow_write("                        | |   | | | \ `--.| |__  ",0.01,style="bold red blink")
+        slow_write("                        | |   | | | |`--. \  __|",0.01,style="bold red blink")
+        slow_write("                        | |___\ \_/ /\__/ / |___ ",0.01,style="bold red blink")
+        slow_write("                        \_____/\___/\____/\____/ ",0.01,style="bold red blink")
+        time.sleep(3)
+        print("Ana menüye dönülüyor")
+        time.sleep(1)
+        loginScreen()
 
-
-
-
-# game_intro()
-# loginScreen()
-CharacterPickScreen()
-
-
-
-
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+game_intro()
